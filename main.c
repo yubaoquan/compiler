@@ -4,10 +4,6 @@
 #include "compiler.cpp"
 
 int main(int argc, char *argv[]) {
-
-	//printf("hello");
-	//system("PAUSE");
-	//return 0;
 	 
     if( argc < 2 ){ 
         printf("usage: %s %s\n", argv[0], "infile outfile"); 
@@ -24,7 +20,7 @@ int main(int argc, char *argv[]) {
     outfile = fopen(outFileName, "ab+" ); 
 	long inFileSize = getFileSize(inFileName);
     char buf[inFileSize]; 
-
+	int line = 0;//ÐÐºÅ 
     if( infile == NULL){ 
         printf("%s not exists\n",inFileName); 
         exit(1); 
@@ -51,8 +47,11 @@ int main(int argc, char *argv[]) {
 		long temp = readIndex;
 		
 		result = analyse(&readIndex,buf,inFileSize,outfile);
+		if (result.kind == 24) {
+			line ++;
+		} 
 		if (result.kind == 0) {
-			printf("analysing error\n");
+			printf("analysing error: line %d\n",line);
 			return 1;
 		}
 		if (temp == readIndex) {

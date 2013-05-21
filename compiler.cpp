@@ -152,7 +152,6 @@ Result identifier(char * token,FILE * outFile) {
 Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
 	int status = 0;
 	char token[16] = "";
-	//Result result;
 	char ch;
 	for (;(*readIndexPtr) < length;){ 
 		
@@ -304,7 +303,8 @@ Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
 							default:
 								status = 19;
 								(*readIndexPtr) --;
-								//error
+								printf("error: unexpected letter \"%c\"\n",ch);
+								return (Result){0,0}; 
 								break;
 							}
 						}
@@ -326,12 +326,8 @@ Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
 						return (Result){0,0};
 					}
 					break;
-				/*case EOF:
-				 		(*readIndexPtr)++;
-						store(token,25,outFile);
-				break;*/
 				default:
-					printf("wrong character:%c,ascii code is %d\n",ch,ch);
+					printf("wrong character:\"%c\",ascii code is %d\n",ch,ch);
 					status = 21;
 					(*readIndexPtr) --;
 					if (*readIndexPtr < 0) {
