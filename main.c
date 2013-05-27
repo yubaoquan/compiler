@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     //打开文件的操作 
     FILE *infile,*outfile; 
     infile = fopen(inFileName, "rb"); 
-    outfile = fopen(outFileName, "ab+" ); 
+    outfile = fopen(outFileName, "ab" ); 
 	long inFileSize = getFileSize(inFileName);
     char buf[inFileSize]; 
 	int line = 0;//行号 
@@ -63,7 +63,8 @@ int main(int argc, char *argv[]) {
 	}
 	fclose(infile); 
 	fclose(outfile);
-	//system("PAUSE");
+	system("PAUSE");
+	getch();
 	return 0; 
 } 
 
