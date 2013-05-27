@@ -243,7 +243,7 @@ Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
 					linkChar(token,ch);
 					status = 10;
 					if ((*readIndexPtr) < length) {
-						ch = buf[(*readIndexPtr)];
+						ch = buf[(*readIndexPtr)++];
 						switch (ch) {
 							case '=':
 								linkChar(token,ch);
@@ -271,7 +271,7 @@ Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
 					linkChar(token,ch);
 					status = 14;
 					if ((*readIndexPtr) < length) {
-						ch = buf[(*readIndexPtr)];
+						ch = buf[(*readIndexPtr)++];
 						switch (ch) {
 							case '=':
 								linkChar(token,ch);
@@ -292,7 +292,7 @@ Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
 					linkChar(token,ch);
 					status = 17;
 					if ((*readIndexPtr) < length) {
-						ch = buf[*readIndexPtr];
+						ch = buf[(*readIndexPtr)++];
 						switch (ch) {
 							case '=':
 								linkChar(token,ch);
