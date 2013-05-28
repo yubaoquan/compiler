@@ -17,7 +17,7 @@ int main(int argc, char *argv[]) {
     //打开文件的操作 
     FILE *infile,*outfile; 
     infile = fopen(inFileName, "rb"); 
-    outfile = fopen(outFileName, "ab" ); 
+    outfile = fopen(outFileName, "wb" ); 
 	long inFileSize = getFileSize(inFileName);
     char buf[inFileSize]; 
 	int line = 0;//行号 
@@ -43,6 +43,7 @@ int main(int argc, char *argv[]) {
 	//return 0;
     long readIndex = 0;
     Result result;
+    printf("length: %ld\n",inFileSize);
 	while(readIndex != inFileSize) {
 		long temp = readIndex;
 		
@@ -61,10 +62,11 @@ int main(int argc, char *argv[]) {
 			return 1;
 		}
 	}
+	//store(token,25,outFile);
 	fclose(infile); 
 	fclose(outfile);
 	system("PAUSE");
-	getch();
+	
 	return 0; 
 } 
 

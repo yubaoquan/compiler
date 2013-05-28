@@ -150,14 +150,15 @@ Result identifier(char * token,FILE * outFile) {
 
 //词法分析主分析函数 
 Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
+	printf("readindex: %ld\n",*readIndexPtr);
 	int status = 0;
 	char token[16] = "";
 	char ch;
 	for (;(*readIndexPtr) < length;){ 
 		
 		ch = buf[(*readIndexPtr)++];
-
-		 
+		
+		//printf("current char: %ld\n",*readIndexPtr);
 		if (ch == EOF) {
 			store(token,25,outFile);
 			return (Result){25,0};
@@ -320,6 +321,9 @@ Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
 					ch = buf[(*readIndexPtr)++];
 					if(ch == '\n') {
 						store(token,24,outFile);
+						if((*readIndexPtr) == length) {
+							store(token,25,outFile);
+						}
 						return (Result){24,0};
 					} else {
 						printf("error: expect LF ,but no LF\n");
@@ -338,7 +342,7 @@ Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
 					break;
 			}
 		}
+		
 	}
-	store(token,25,outFile);//EOF
+	//store(token,25,outFile);//EOF
 }
-
