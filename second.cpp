@@ -208,23 +208,7 @@ bool assign() {//赋值运算
 		return 0;
 	//非形参的变量
 	storeVar(j - 1,0); 
-	/*
-		fwrite(dyd[j - 1].s,sizeof (char),strlen(dyd[j - 1].s),var);//变量名
-		fwrite("\n",sizeof (char),1,var);
-		fwrite(process[processSelect],sizeof(char),strlen(process[processSelect]),var);//所属过程
-		fwrite("\n",sizeof (char),1,var);
-		fwrite("0",sizeof(char),strlen("0"),var);//分类:变量
-		fwrite("\n",sizeof (char),1,var);
-		fwrite("integer",sizeof(char),strlen("integer"),var);//变量类型:integer
-		fwrite("\n",sizeof (char),1,var);
-		int2charArray(level,numberStr,2);//层次
-		fwrite(numberStr,sizeof(char),strlen(numberStr),var);
-		fwrite("\n",sizeof (char),1,var);
-		int2charArray(varPos++,numberStr,2);//变量名表中的位置
-		fwrite(numberStr,sizeof(char),strlen(numberStr),var);
-		fwrite("\n",sizeof (char),1,var);
-		fwrite("\n",sizeof (char),1,var);
-		*/
+	
 	if(!contrast(20))//contrast(20)=":="
 		return 0;
 	if(!arith())
@@ -241,23 +225,7 @@ bool write() {//写语句
 		return 0;
 	//非形参的变量
 	storeVar(j - 1,0); 
-	/*
-		fwrite(dyd[j - 1].s,sizeof (char),strlen(dyd[j - 1].s),var);//变量名
-		fwrite("\n",sizeof (char),1,var);
-		fwrite(process[processSelect],sizeof(char),strlen(process[processSelect]),var);//所属过程
-		fwrite("\n",sizeof (char),1,var);
-		fwrite("0",sizeof(char),strlen("0"),var);//分类:变量
-		fwrite("\n",sizeof (char),1,var);
-		fwrite("integer",sizeof(char),strlen("integer"),var);//变量类型:integer
-		fwrite("\n",sizeof (char),1,var);
-		int2charArray(level,numberStr,2);//层次
-		fwrite(numberStr,sizeof(char),strlen(numberStr),var);
-		fwrite("\n",sizeof (char),1,var);
-		int2charArray(varPos++,numberStr,2);//变量名表中的位置
-		fwrite(numberStr,sizeof(char),strlen(numberStr),var);
-		fwrite("\n",sizeof (char),1,var);
-		fwrite("\n",sizeof (char),1,var);
-		*/
+
 	if (!contrast(22))//contrast(22)=')'
 		return 0;
 	return 1;
@@ -271,23 +239,7 @@ bool read() {//读语句
 		return 0;
 	//非形参的变量
 	storeVar(j - 1,0); 
-	/*
-		fwrite(dyd[j - 1].s,sizeof (char),strlen(dyd[j - 1].s),var);//变量名
-		fwrite("\n",sizeof (char),1,var);
-		fwrite(process[processSelect],sizeof(char),strlen(process[processSelect]),var);//所属过程
-		fwrite("\n",sizeof (char),1,var);
-		fwrite("0",sizeof(char),strlen("0"),var);//分类:变量
-		fwrite("\n",sizeof (char),1,var);
-		fwrite("integer",sizeof(char),strlen("integer"),var);//变量类型:integer
-		fwrite("\n",sizeof (char),1,var);
-		int2charArray(level,numberStr,2);//层次
-		fwrite(numberStr,sizeof(char),strlen(numberStr),var);
-		fwrite("\n",sizeof (char),1,var);
-		int2charArray(varPos++,numberStr,2);//变量名表中的位置
-		fwrite(numberStr,sizeof(char),strlen(numberStr),var);
-		fwrite("\n",sizeof (char),1,var);
-		fwrite("\n",sizeof (char),1,var);
-		*/
+	
 	if (!contrast(22))
 		return 0;
 	return 1;
@@ -357,36 +309,7 @@ bool direction_() {//说明语句递归
 	if(contrast(10)) {
 	//非形参的变量
 	storeVar(j - 1,0); 
-	/*
-		fwrite("vname: ",sizeof (char),strlen("vname: "),var);
-		fwrite(dyd[j - 1].s,sizeof (char),strlen(dyd[j - 1].s),var);//变量名
-		fwrite("\n",sizeof (char),1,var);
-		
-		fwrite("vpro: ",sizeof (char),strlen("vpro: "),var);
-		fwrite(process[processSelect],sizeof(char),strlen(process[processSelect]),var);//所属过程
-		fwrite("\n",sizeof (char),1,var);
-		
-		fwrite("vkind: ",sizeof (char),strlen("vkind: "),var);
-		fwrite("0",sizeof(char),strlen("0"),var);//分类:变量
-		fwrite("\n",sizeof (char),1,var);
-		
-		fwrite("vtype ",sizeof (char),strlen("vtype: "),var);
-		fwrite("integer",sizeof(char),strlen("integer"),var);//变量类型:integer
-		fwrite("\n",sizeof (char),1,var);
-		
-		
-		int2charArray(level,numberStr,2);//层次
-		fwrite("vlev: ",sizeof (char),strlen("vlev: "),var);
-		fwrite(numberStr,sizeof(char),strlen(numberStr),var);
-		fwrite("\n",sizeof (char),1,var);
-		
-		
-		int2charArray(varPos++,numberStr,2);//变量名表中的位置
-		fwrite("vadr: ",sizeof (char),strlen("vadr: "),var);
-		fwrite(numberStr,sizeof(char),strlen(numberStr),var);
-		fwrite("\n",sizeof (char),1,var);
-		fwrite("\n",sizeof (char),1,var);
-		*/
+	
 		return 1;	
 	} 
 	if (!contrast(7)) {
@@ -435,24 +358,7 @@ bool direction_() {//说明语句递归
 	
 	//函数的形参
 	storeVar(j - 1,1); 
-	/*
-	fwrite("vname: ",sizeof (char),strlen("vname: "),var);
-	fwrite(dyd[j - 1].s,sizeof (char),strlen(dyd[j - 1].s),var);//变量名
-	fwrite("\n",sizeof (char),1,var);
-	fwrite(dyd[j - 3].s,sizeof(char),strlen(dyd[j - 3].s),var);//所属过程
-	fwrite("\n",sizeof (char),1,var);
-	fwrite("1",sizeof(char),strlen("1"),var);//分类:形参
-	fwrite("\n",sizeof (char),1,var);
-	fwrite("integer",sizeof(char),strlen("integer"),var);//变量类型:integer
-	fwrite("\n",sizeof (char),1,var);
-	int2charArray(level,numberStr,2);//层次
-	fwrite(numberStr,sizeof(char),strlen(numberStr),var);
-	fwrite("\n",sizeof (char),1,var);
-	int2charArray(varPos++,numberStr,2);//变量名表中的位置
-	fwrite(numberStr,sizeof(char),strlen(numberStr),var);
-	fwrite("\n",sizeof (char),1,var);
-	fwrite("\n",sizeof (char),1,var);
-	*/
+	
 	
 	if (!contrast(22)) {
 		printf("not 22\n");
@@ -548,10 +454,6 @@ int main()
 		c++;
 	fclose(in);
 	
-	/*
-	for(int index = 0; index < 65; index ++) {
-		printf("%s, %d\n",dyd[index].s,dyd[index].zhongbie);
-	} */
 	
 	j=0;
 	
