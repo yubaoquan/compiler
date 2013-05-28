@@ -19,7 +19,7 @@ vtype: integer
 vlev: 02
 vadr: 02
 
-vname: F
+vname: n
 vpro: F
 vkind: 00
 vtype: integer
@@ -33,24 +33,66 @@ vtype: integer
 vlev: 01
 vadr: 04
 
+vname: F
+vpro: F
+vkind: 00
+vtype: integer
+vlev: 01
+vadr: 05
+
+vname: n
+vpro: F
+vkind: 00
+vtype: integer
+vlev: 01
+vadr: 06
+
+vname: F
+vpro: F
+vkind: 00
+vtype: integer
+vlev: 01
+vadr: 07
+
+vname: n
+vpro: F
+vkind: 00
+vtype: integer
+vlev: 01
+vadr: 08
+
 vname: m
 vpro: main
 vkind: 00
 vtype: integer
 vlev: 00
-vadr: 05
+vadr: 09
 
 vname: k
 vpro: main
 vkind: 00
 vtype: integer
 vlev: 00
-vadr: 06
+vadr: 10
+
+vname: F
+vpro: main
+vkind: 00
+vtype: integer
+vlev: 00
+vadr: 11
+
+vname: m
+vpro: main
+vkind: 00
+vtype: integer
+vlev: 00
+vadr: 12
 
 vname: k
 vpro: main
 vkind: 00
 vtype: integer
 vlev: 00
-vadr: 07
+vadr: 13
 

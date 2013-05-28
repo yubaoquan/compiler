@@ -154,6 +154,8 @@ bool divisor() {//因子
 		return 1;
 	if(!contrast(10)) /*变量或函数调用*/
 		return 0;
+	//---------------------------------------------
+	storeVar( j - 1,0);
 	if(!divisor_())
 		return 0;
 	return 1;
