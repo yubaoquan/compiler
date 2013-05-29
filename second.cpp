@@ -298,7 +298,7 @@ bool F() {//函数体
 	processSelect = 1;
 	if(!contrast(1)) {//contrast(1)="begin"
 		printf("in function analysing : not begin\n");
-		errorRecord(j,"(1)\n");//-----------------------error record
+		errorRecord(j + 1,"(1)\n");//-----------------------error record
 		return 0;
 	}
 	if(!direction_list()) {
@@ -331,7 +331,7 @@ bool direction_() {//说明语句递归
 	} 
 	if (!contrast(7)) {
 		printf("not 7\n");
-		errorRecord(j,"(1)\n");//-----------------------error record
+		errorRecord(j + 1,"(1)\n");//-----------------------error record
 		return 0;
 	}
 	if (!contrast(10)) {
@@ -394,8 +394,12 @@ bool direction_() {//说明语句递归
 
 }
 bool direction() {//说明语句
-	if(!contrast(3))
+	if(!contrast(3)) {
+		errorRecord(j + 1,"(3)\n");//-----------------------error record
 		return 0;
+	}
+	
+		
 	if(!direction_())
 		return 0;
 	return 1;
@@ -435,7 +439,7 @@ bool direction_list() {//说明语句表
 bool program() {//程序
 	if (!contrast(1)) {
 		printf("contrast_1\n");
-		errorRecord(j,"(1)\n");//-----------------------error record
+		errorRecord(j + 1,"(1)\n");//-----------------------error record
 		return 0;
 	}
 	
@@ -446,7 +450,7 @@ bool program() {//程序
 	j ++; 
 	if (!contrast(23)) {
 		printf("contrast_23\n");
-		errorRecord(j,"(1)\n");//-----------------------error record
+		errorRecord(j + 1,"(1)\n");//-----------------------error record
 		return 0;
 	}
 	if (!exe_list()) {
@@ -456,7 +460,7 @@ bool program() {//程序
 	if (!contrast(2)) {
 		printf("contrast_2\n");
 		return 0;
-		errorRecord(j,"(1)\n");//-----------------------error record
+		errorRecord(j + 1,"(1)\n");//-----------------------error record
 	}
 	if (!contrast(25)) {
 		printf("contrast_25\n");
