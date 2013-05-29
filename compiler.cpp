@@ -6,6 +6,21 @@
 
 #define MAXLEN 1024 
 
+FILE *infile,*outfile,*errorfile; 
+//int lineInCompiler = 0;//行号
+
+//记录错误 
+void errorRecord(int line) {
+	char errorHead[50] = "***LINE:";
+	char * errorTail = "  word error\n";
+	printf("line: %d\n",line);
+	char lineStr[20];
+	int2charArray(line,lineStr,2);
+	char * temp = strcat(errorHead,lineStr);
+	char * errorMsg = strcat(temp,errorTail);
+	fwrite(errorMsg,sizeof (char),strlen(errorMsg),errorfile);
+} 
+
 //获取文件大小 
 long getFileSize(char *fileName) {
 	FILE * fileToEnd = fopen(fileName,"rb");
@@ -149,7 +164,7 @@ Result identifier(char * token,FILE * outFile) {
 }
 
 //词法分析主分析函数 
-Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
+Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile,int line){
 	printf("readindex: %ld\n",*readIndexPtr);
 	int status = 0;
 	char token[16] = "";
@@ -304,6 +319,7 @@ Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
 							default:
 								status = 19;
 								(*readIndexPtr) --;
+								errorRecord(line);//-----------------error operation
 								printf("error: unexpected letter \"%c\"\n",ch);
 								return (Result){0,0}; 
 								break;
@@ -324,8 +340,10 @@ Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
 						if((*readIndexPtr) == length) {
 							store(token,25,outFile);
 						}
+						
 						return (Result){24,0};
 					} else {
+						errorRecord(line);//-----------------error operation
 						printf("error: expect LF ,but no LF\n");
 						return (Result){0,0};
 					}
@@ -338,6 +356,7 @@ Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile){
 						printf("error! status 21,readIndex < 0\n");
 						
 					}
+					errorRecord(line);//-----------------error operation
 					return (Result){0,0};
 					break;
 			}

@@ -5,8 +5,10 @@
 #include <cmath>
 #include <cstdlib>
 using namespace std;
+
 FILE * var;/*变量名表*/ 
 FILE * pro;/*过程名表*/ 
+FILE * errorfile;/*错误文件*/
 
 char * process[2] = {"main","F"};
 int processSelect = 0;
@@ -46,6 +48,22 @@ int int2charArray(int number,char * token,int width) {
 	return 0;
 }
 
+//记录错误 
+void errorRecord(int line,char * errorTail) {
+	
+	char errorHead[50] = "***LINE:";
+	//char * errorTail = "word error\n";
+	printf("line: %d\n",line);
+	char lineStr[20];
+	int2charArray(j,lineStr,2);
+	char * temp = strcat(errorHead,lineStr);
+	temp = strcat(temp,"  "); 
+	char * errorMsg = strcat(temp,errorTail);
+	fwrite(errorMsg,sizeof (char),strlen(errorMsg),errorfile);
+	fclose(errorfile);
+} 
+
+
 void storeVar(int index,int kind) {
 	fwrite("vname: ",sizeof (char),strlen("vname: "),var);
 	fwrite(dyd[index].s,sizeof (char),strlen(dyd[index].s),var);//变量名
@@ -81,8 +99,7 @@ void storeVar(int index,int kind) {
 bool contrast(int a)//对first.dyd中的内容进行匹配对比
 {
 	i=1;
-	while (dyd[j].zhongbie==24)
-	{
+	while (dyd[j].zhongbie==24) {
 		j++;
 		i++;
 	}
@@ -95,8 +112,7 @@ bool contrast(int a)//对first.dyd中的内容进行匹配对比
 
 }
 
-bool relation()//关系运算符-><|<=|>=|=|<>
-{
+bool relation() {//关系运算符-><|<=|>=|=|<>
 	for(int m=12;m!=17;m++)
 		if(contrast(m)) {
 		printf("relation found: %d\n",m);
@@ -105,8 +121,7 @@ bool relation()//关系运算符-><|<=|>=|=|<>
 		return 0;
 }
 
-bool condition()//条件表达式->算术表达式 关系运算符 算术表达式
-{	
+bool condition() {//条件表达式->算术表达式 关系运算符 算术表达式
 	printf("condition analysing\n");
 	if(!arith())
 		return 0;
@@ -118,8 +133,7 @@ bool condition()//条件表达式->算术表达式 关系运算符 算术表达式
 }
 
 
-bool tjyj()//条件语句
-{
+bool tjyj() {//条件语句
 	printf("tjyj analysing\n");
 	
 	if(!contrast(4))//contrast(4)=="if"
@@ -155,7 +169,7 @@ bool divisor() {//因子
 	if(!contrast(10)) /*变量或函数调用*/
 		return 0;
 	//---------------------------------------------
-	storeVar( j - 1,0);
+	//storeVar( j - 1,0);
 	if(!divisor_())
 		return 0;
 	return 1;
@@ -209,7 +223,7 @@ bool assign() {//赋值运算
 	if(!contrast(10))//contrast(10)为变量
 		return 0;
 	//非形参的变量
-	storeVar(j - 1,0); 
+	//storeVar(j - 1,0); 
 	
 	if(!contrast(20))//contrast(20)=":="
 		return 0;
@@ -284,6 +298,7 @@ bool F() {//函数体
 	processSelect = 1;
 	if(!contrast(1)) {//contrast(1)="begin"
 		printf("in function analysing : not begin\n");
+		errorRecord(j,"(1)\n");//-----------------------error record
 		return 0;
 	}
 	if(!direction_list()) {
@@ -316,6 +331,7 @@ bool direction_() {//说明语句递归
 	} 
 	if (!contrast(7)) {
 		printf("not 7\n");
+		errorRecord(j,"(1)\n");//-----------------------error record
 		return 0;
 	}
 	if (!contrast(10)) {
@@ -419,6 +435,7 @@ bool direction_list() {//说明语句表
 bool program() {//程序
 	if (!contrast(1)) {
 		printf("contrast_1\n");
+		errorRecord(j,"(1)\n");//-----------------------error record
 		return 0;
 	}
 	
@@ -429,6 +446,7 @@ bool program() {//程序
 	j ++; 
 	if (!contrast(23)) {
 		printf("contrast_23\n");
+		errorRecord(j,"(1)\n");//-----------------------error record
 		return 0;
 	}
 	if (!exe_list()) {
@@ -438,6 +456,7 @@ bool program() {//程序
 	if (!contrast(2)) {
 		printf("contrast_2\n");
 		return 0;
+		errorRecord(j,"(1)\n");//-----------------------error record
 	}
 	if (!contrast(25)) {
 		printf("contrast_25\n");
@@ -449,8 +468,9 @@ bool program() {//程序
 int main()
 {
 	FILE * in=fopen("target.dyd","r");
-	var=fopen("target.var","w");
-	pro=fopen("target.pro","w");
+	var=fopen("target.var","wb");
+	pro=fopen("target.pro","wb");
+	errorfile = fopen("error.txt","wb"); 
 	int c=0;
 	while(~fscanf(in,"%s%d",dyd[c].s,&dyd[c].zhongbie))
 		c++;

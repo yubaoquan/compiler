@@ -3,6 +3,7 @@
 
 #include "compiler.cpp"
 
+
 int main(int argc, char *argv[]) {
 	 
     if( argc < 2 ){ 
@@ -15,12 +16,13 @@ int main(int argc, char *argv[]) {
     char * outFileName = getOutFileName(inFileName,outFileSuffix);
    
     //打开文件的操作 
-    FILE *infile,*outfile; 
+    //FILE *infile,*outfile,*errorfile; 
     infile = fopen(inFileName, "rb"); 
     outfile = fopen(outFileName, "wb" ); 
+    errorfile = fopen("error.txt","wb");
 	long inFileSize = getFileSize(inFileName);
     char buf[inFileSize]; 
-	int line = 0;//行号 
+	int line = 1;//行号 
     if( infile == NULL){ 
         printf("%s not exists\n",inFileName); 
         exit(1); 
@@ -47,7 +49,7 @@ int main(int argc, char *argv[]) {
 	while(readIndex != inFileSize) {
 		long temp = readIndex;
 		
-		result = analyse(&readIndex,buf,inFileSize,outfile);
+		result = analyse(&readIndex,buf,inFileSize,outfile,line);
 		if (result.kind == 24) {
 			line ++;
 		} 

@@ -28,7 +28,7 @@ typedef struct {int kind;
 				} Result;
 				
 //词法分析 主分析函数 
-Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile);
+Result analyse(long * readIndexPtr,char buf[],long length,FILE * outFile,int line);
 
 //字符串后连接字符 
 void linkChar(char * str,char ch);
