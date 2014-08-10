@@ -1,0 +1,21 @@
+vname: k
+vpro: main
+vkind: 00
+vtype: integer
+vlev: 01
+vadr: 00
+
+vname: n
+vpro: main
+vkind: 01
+vtype: integer
+vlev: 01
+vadr: 01
+
+vname: n
+vpro: F
+vkind: 00
+vtype: integer
+vlev: 02
+vadr: 02
+

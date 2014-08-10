@@ -32,15 +32,38 @@ void errorRecord(int line) {
 	//fwrite(errorMsg,sizeof (char),strlen(errorMsg),errorfile);
 } 
 
+void CopySomething(int len)
+{
+	char kbuf[800];
+	int size = sizeof(kbuf);
+	if(len > size)
+		printf("no overflow\n");
+	printf("overflow\n");
+}
+
+
 int main () {
-	
-	char a[20] = "hello";
-	char b[10] = "world";
-	char * ba = strcat (a,"this fucking world");
-	ba = strcat(ba,"mama");
-	//strcat(a,b);
-	printf("%s\n",ba);
-	//errorRecord(6); 
+	char buf[80] = "123456";
+	int a = 6;
+	int len;
+	len = printf("%s\n",buf);
+	printf("%d\n",len);
+	printf("%d\n",strlen(buf));
+	len = sprintf(buf + strlen(buf) , "%8d%8d",123,4567);  
+	printf("%s\n%d\n",buf,len);
+	len = sprintf(buf + strlen(buf) , "%8d%8d", 123, 4567);
+	printf("%s\n%d\n",buf,len);
+	len = sprintf(buf + strlen(buf) , "%s%s%s","hello", " ", "world\n");
+	printf("%s\n%d\n",buf,len);
+	//CopySomething() 
+	/*
+	int bytes_formatted=0;
+	char buffer[28]= "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	printf("%.20x%n",buffer,&bytes_formatted);
+	printf("\nThe number of bytes formatted in the previous printf statement was %d\n",bytes_formatted);
+*/
+
 	system("pause");
 	return 0;	
 }
+
